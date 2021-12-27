@@ -1,12 +1,9 @@
 package a3.makarenko.EmployeeModel;
 
-import a3.makarenko.EmployeeModel.Employee;
-import a3.makarenko.EmployeeModel.EmployeeFactory;
 import a3.makarenko.enums.EmployeeTypes;
 import a3.makarenko.enums.FamilyStatus;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import java.io.InputStreamReader;
 
@@ -15,7 +12,7 @@ public class EmployeeList {
     private ArrayList<Employee> employeeList;
 
     public EmployeeList(){
-        this.employeeList = new ArrayList<Employee>();
+        this.employeeList = new ArrayList<>();
     }
 
     public ArrayList<Employee> getEmployeeList() {
@@ -46,7 +43,7 @@ public class EmployeeList {
         System.out.print("Your choose: ");
         FamilyStatus familyStatus = FamilyStatus.getType(scanner.nextInt() - 1);
         System.out.print("Enter age: ");
-        Double age = scanner.nextDouble();
+        double age = scanner.nextDouble();
         System.out.print("Enter experience: ");
         double experience = scanner.nextDouble();
 
@@ -56,10 +53,9 @@ public class EmployeeList {
 
     public Employee remove() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        System.out.print("Enter target number to delete");
+        System.out.print("Enter target number to delete ");
         int t = scanner.nextInt();
-        employeeList.remove(t);
-        return employeeList.remove(t);
+        return employeeList.remove(t-1);
     }
 
     public void showAll() {

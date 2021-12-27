@@ -38,10 +38,10 @@ public class App
                 case 3: employeeList.remove();
                 break;
 
-                case 4: JSONWorker.read(FILE_PATH);
+                case 4: employeeList = JSONWorker.read(FILE_PATH);
                 break;
 
-                case 5: //JSONWorker.write(FILE_PATH, employeeList.getEmployeeList());
+                case 5: JSONWorker.write(FILE_PATH, employeeList);
                 break;
 
                 case 0: ex = false;

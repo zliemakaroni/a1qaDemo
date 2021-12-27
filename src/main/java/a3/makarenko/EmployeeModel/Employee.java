@@ -1,15 +1,7 @@
 package a3.makarenko.EmployeeModel;
 
 import a3.makarenko.enums.FamilyStatus;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = Employee.class, name = "Employee"),
-        @JsonSubTypes.Type(value = Manager.class, name = "Manager")
-})
 public abstract class Employee{
        protected String name;
        protected String position;
@@ -17,7 +9,7 @@ public abstract class Employee{
        protected double age;
        protected double experience;
 
-       Employee(String name, String position, FamilyStatus familyStatus, double age, double experience){
+       protected Employee(String name, String position, FamilyStatus familyStatus, double age, double experience){
               this.age = age;
               this.experience = experience;
               this.familyStatus = familyStatus;
@@ -44,5 +36,26 @@ public abstract class Employee{
        public String getPosition() {
               return position;
        }
+
+       public void setAge(double age) {
+              this.age = age;
+       }
+
+       public void setExperience(double experience) {
+              this.experience = experience;
+       }
+
+       public void setFamilyStatus(FamilyStatus familyStatus) {
+              this.familyStatus = familyStatus;
+       }
+
+       public void setName(String name) {
+              this.name = name;
+       }
+
+       public void setPosition(String position) {
+              this.position = position;
+       }
+
        public abstract void show();
 }

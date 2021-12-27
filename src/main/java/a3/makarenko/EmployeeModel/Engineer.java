@@ -2,13 +2,19 @@ package a3.makarenko.EmployeeModel;
 
 import a3.makarenko.enums.EmployeeTypes;
 import a3.makarenko.enums.FamilyStatus;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import static a3.makarenko.App.DELIMITER;
 
 public class Engineer extends Employee{
 
 
-    Engineer(String name, String position, FamilyStatus familyStatus, double age, double experience) {
+
+    public Engineer(@JsonProperty("name") String name,
+                    @JsonProperty("position") String position,
+                    @JsonProperty("familyStatus")FamilyStatus familyStatus,
+                    @JsonProperty("age")double age,
+                    @JsonProperty("experience")double experience) {
         super(name, position, familyStatus, age, experience);
     }
 
