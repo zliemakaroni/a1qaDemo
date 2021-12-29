@@ -58,4 +58,16 @@ public abstract class Employee{
        }
 
        public abstract void show();
+
+       @Override
+       public boolean equals(Object o){
+              if(this == o) return true;
+              if(o == null || getClass() != o.getClass()) return false;
+              Employee e = (Employee) o;
+              return this.name.equals(e.getName()) &&
+                      this.position.equals(e.getPosition()) &&
+                      this.familyStatus.toString().equals(e.getFamilyStatus()) &&
+                      this.age == e.getAge() &&
+                      this.experience == e.getExperience();
+       }
 }

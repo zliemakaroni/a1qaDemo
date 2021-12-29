@@ -29,7 +29,7 @@ public class App
             System.out.println(DELIMITER);
 
             switch(sw){
-                case 1: employeeList.showAll();
+                case 1: employeeList.showList();
                 break;
 
                 case 2: employeeList.add();
