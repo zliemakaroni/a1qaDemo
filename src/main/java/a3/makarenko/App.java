@@ -3,6 +3,7 @@ package a3.makarenko;
 import a3.makarenko.EmployeeModel.EmployeeList;
 
 import java.io.InputStreamReader;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App 
@@ -11,13 +12,14 @@ public class App
     public static final String FILE_PATH = "employees.json";
 
 
-    public static void main( String[] args ) {
+    public static void main( String[] args ) throws InterruptedException {
         EmployeeList employeeList = new EmployeeList();
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int sw;
         boolean ex = true;
 
         while(ex){
+            Thread.sleep(500);
             System.out.println("1. Show Employees");
             System.out.println("2. Add Employee");
             System.out.println("3. Delete Employee");
@@ -29,7 +31,11 @@ public class App
             System.out.println(DELIMITER);
 
             switch(sw){
-                case 1: employeeList.showList();
+                case 1: try{
+                    employeeList.showList();
+                } catch (ArrayStoreException e){
+                    e.printStackTrace();
+                }
                 break;
 
                 case 2: employeeList.add();

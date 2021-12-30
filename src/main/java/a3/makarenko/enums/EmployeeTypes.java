@@ -3,7 +3,7 @@ package a3.makarenko.enums;
 public enum EmployeeTypes {
     Engineer, Manager;
 
-    public static EmployeeTypes getType(int index) {
+    public static EmployeeTypes getType(int index) throws IllegalArgumentException{
             for (EmployeeTypes types : EmployeeTypes.values()) {
                 if (types.ordinal() == index) return types;
             }

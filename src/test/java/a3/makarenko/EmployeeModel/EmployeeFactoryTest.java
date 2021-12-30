@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class EmployeeFactoryTest {
 
     @Test
-    public void getEmployee() {
+    public void getEmployeePositive() {
         Engineer expected = new Engineer("Alexey", "Future AQA",
                 FamilyStatus.Single, 20,1);
 
@@ -21,13 +21,68 @@ public class EmployeeFactoryTest {
     }
 
     @Test
-    public void getEmployeeNegative(){
+    public void getEmployeeNegativeDiffClass(){
         Manager expected = new Manager("Alexey", "Future AQA",
                 FamilyStatus.Single, 20,1);
 
         EmployeeFactory employeeFactory = new EmployeeFactory();
         Employee actual = employeeFactory.getEmployee(EmployeeTypes.Engineer, "Alexey", "Future AQA",
                 FamilyStatus.Single, 20, 1);
+        Assert.assertNotEquals(expected, actual);
+    }
+
+    @Test
+    public void getEmployeeNegativeDiffName(){
+        Manager expected = new Manager("Alexey", "Future AQA",
+                FamilyStatus.Single, 20,1);
+
+        EmployeeFactory employeeFactory = new EmployeeFactory();
+        Employee actual = employeeFactory.getEmployee(EmployeeTypes.Manager, "Misha", "Future AQA",
+                FamilyStatus.Single, 20, 1);
+        Assert.assertNotEquals(expected, actual);
+    }
+
+    @Test
+    public void getEmployeeNegativeDiffPosition(){
+        Manager expected = new Manager("Alexey", "Future AQA",
+                FamilyStatus.Single, 20,1);
+
+        EmployeeFactory employeeFactory = new EmployeeFactory();
+        Employee actual = employeeFactory.getEmployee(EmployeeTypes.Manager, "Alexey", "PM",
+                FamilyStatus.Single, 20, 1);
+        Assert.assertNotEquals(expected, actual);
+    }
+
+    @Test
+    public void getEmployeeNegativeDiffFamilyStatus(){
+        Manager expected = new Manager("Alexey", "Future AQA",
+                FamilyStatus.Single, 20,1);
+
+        EmployeeFactory employeeFactory = new EmployeeFactory();
+        Employee actual = employeeFactory.getEmployee(EmployeeTypes.Manager, "Alexey", "Future AQA",
+                FamilyStatus.Married, 20, 1);
+        Assert.assertNotEquals(expected, actual);
+    }
+
+    @Test
+    public void getEmployeeNegativeDiffAge(){
+        Manager expected = new Manager("Alexey", "Future AQA",
+                FamilyStatus.Single, 20,1);
+
+        EmployeeFactory employeeFactory = new EmployeeFactory();
+        Employee actual = employeeFactory.getEmployee(EmployeeTypes.Manager, "Alexey", "Future AQA",
+                FamilyStatus.Single, 20.01, 1);
+        Assert.assertNotEquals(expected, actual);
+    }
+
+    @Test
+    public void getEmployeeNegativeDiffExperience(){
+        Manager expected = new Manager("Alexey", "Future AQA",
+                FamilyStatus.Single, 20,1);
+
+        EmployeeFactory employeeFactory = new EmployeeFactory();
+        Employee actual = employeeFactory.getEmployee(EmployeeTypes.Manager, "Alexey", "Future AQA",
+                FamilyStatus.Single, 20, 1.01);
         Assert.assertNotEquals(expected, actual);
     }
 }

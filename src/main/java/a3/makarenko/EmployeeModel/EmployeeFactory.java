@@ -4,9 +4,12 @@ import a3.makarenko.enums.EmployeeTypes;
 import a3.makarenko.enums.FamilyStatus;
 
 public class EmployeeFactory {
-public Employee getEmployee(EmployeeTypes type, String name,
-                            String position, FamilyStatus familyStatus, double age, double experience){
-    try {
+public Employee getEmployee(EmployeeTypes type,
+                            String name,
+                            String position,
+                            FamilyStatus familyStatus,
+                            double age,
+                            double experience) throws IllegalArgumentException{
         if (age < experience) throw new IllegalArgumentException("Age cant be lesser than experience");
         switch (type) {
             case Manager:
@@ -16,9 +19,5 @@ public Employee getEmployee(EmployeeTypes type, String name,
             default:
                 throw new IllegalArgumentException("Wrong employee type:" + type);
         }
-    } catch(IllegalArgumentException e){
-        e.printStackTrace();
-    }
-    return null;
 }
 }

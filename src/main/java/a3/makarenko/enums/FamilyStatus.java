@@ -3,7 +3,7 @@ package a3.makarenko.enums;
 public enum FamilyStatus{
     Single, Married;
 
-    public static FamilyStatus getType(int index){
+    public static FamilyStatus getType(int index) throws IllegalArgumentException{
         for(FamilyStatus status: FamilyStatus.values()){
             if(status.ordinal() == index)  return status;
         }
