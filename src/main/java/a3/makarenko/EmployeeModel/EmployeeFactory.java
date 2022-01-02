@@ -11,6 +11,9 @@ public Employee getEmployee(EmployeeTypes type,
                             double age,
                             double experience) throws IllegalArgumentException{
         if (age < experience) throw new IllegalArgumentException("Age cant be lesser than experience");
+        if (age < 0) throw new IllegalArgumentException("Age must be positive");
+        if (age < 16) throw new IllegalArgumentException("Too yong to work here");
+        if (experience < 0) throw new IllegalArgumentException("Experience must be positive");
         switch (type) {
             case Manager:
                 return new Manager(name, position, familyStatus, age, experience);

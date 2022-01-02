@@ -1,27 +1,31 @@
 package a3.makarenko.EmployeeModel;
 
+import a3.makarenko.RandomGenerator;
 import a3.makarenko.enums.EmployeeTypes;
 import a3.makarenko.enums.FamilyStatus;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class EmployeeFactoryTest {
 
     @Test
-    public void getEmployeePositive() {
-        Engineer expected = new Engineer("Alexey", "Future AQA",
-                FamilyStatus.Single, 20,1);
+    public void getEmployee() {
+        String rName = RandomGenerator.getRandomAlphabeticString(RandomGenerator.getRandomNumber(1, 255));
+        String rPosition = RandomGenerator.getRandomAlphabeticString(RandomGenerator.getRandomNumber(1, 255));
+        FamilyStatus rFamilyStatus = FamilyStatus.getType(RandomGenerator.getRandomNumber(0, FamilyStatus.values().length - 1));
+        int rAge = RandomGenerator.getRandomNumber(16, 100);
+        int rExperience = RandomGenerator.getRandomNumber(0, rAge - 1);
+        Engineer expected = new Engineer(rName, rPosition,
+                rFamilyStatus, rAge,rExperience);
 
         EmployeeFactory employeeFactory = new EmployeeFactory();
-        Employee actual = employeeFactory.getEmployee(EmployeeTypes.Engineer, "Alexey", "Future AQA",
-                FamilyStatus.Single, 20, 1);
+        Employee actual = employeeFactory.getEmployee(EmployeeTypes.Engineer, rName, rPosition,
+                rFamilyStatus, rAge,rExperience);
         Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void getEmployeeNegativeDiffClass(){
+    public void getEmployeeDiffClass(){
         Manager expected = new Manager("Alexey", "Future AQA",
                 FamilyStatus.Single, 20,1);
 
@@ -32,7 +36,7 @@ public class EmployeeFactoryTest {
     }
 
     @Test
-    public void getEmployeeNegativeDiffName(){
+    public void getEmployeeDiffName(){
         Manager expected = new Manager("Alexey", "Future AQA",
                 FamilyStatus.Single, 20,1);
 
@@ -43,7 +47,7 @@ public class EmployeeFactoryTest {
     }
 
     @Test
-    public void getEmployeeNegativeDiffPosition(){
+    public void getEmployeeDiffPosition(){
         Manager expected = new Manager("Alexey", "Future AQA",
                 FamilyStatus.Single, 20,1);
 
@@ -54,7 +58,7 @@ public class EmployeeFactoryTest {
     }
 
     @Test
-    public void getEmployeeNegativeDiffFamilyStatus(){
+    public void getEmployeeDiffFamilyStatus(){
         Manager expected = new Manager("Alexey", "Future AQA",
                 FamilyStatus.Single, 20,1);
 
@@ -65,7 +69,7 @@ public class EmployeeFactoryTest {
     }
 
     @Test
-    public void getEmployeeNegativeDiffAge(){
+    public void getEmployeeDiffAge(){
         Manager expected = new Manager("Alexey", "Future AQA",
                 FamilyStatus.Single, 20,1);
 
@@ -76,7 +80,7 @@ public class EmployeeFactoryTest {
     }
 
     @Test
-    public void getEmployeeNegativeDiffExperience(){
+    public void getEmployeeDiffExperience(){
         Manager expected = new Manager("Alexey", "Future AQA",
                 FamilyStatus.Single, 20,1);
 
