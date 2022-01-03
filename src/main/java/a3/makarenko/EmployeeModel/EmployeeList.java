@@ -88,10 +88,12 @@ public class EmployeeList {
 
     public Employee remove() {
         System.out.print("Enter target number to delete ");
-        int t = scanner.nextInt();
         try{
+            int t = scanner.nextInt();
             return employeeList.remove(--t);
         } catch (IndexOutOfBoundsException e){
+            e.printStackTrace();
+        } catch (InputMismatchException e){
             e.printStackTrace();
         }
         return null;

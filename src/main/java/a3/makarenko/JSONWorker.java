@@ -10,6 +10,8 @@ import java.io.IOException;
 
 public class JSONWorker {
 
+    public static ObjectMapper mapper = new ObjectMapper();
+
     public static EmployeeList read(String path){
 
         File file = new File(path);
@@ -19,7 +21,6 @@ public class JSONWorker {
                     .allowIfSubType("a3.makarenko.EmployeeModel")
                     .allowIfSubType("java.util.ArrayList")
                     .build();
-            ObjectMapper mapper = new ObjectMapper();
             mapper.activateDefaultTyping(ptv, ObjectMapper.DefaultTyping.NON_FINAL);
 
 
@@ -38,7 +39,6 @@ public class JSONWorker {
                     .allowIfSubType("a3.makarenko.EmployeeModel")
                     .allowIfSubType("java.util.ArrayList")
                     .build();
-            ObjectMapper mapper = new ObjectMapper();
             mapper.activateDefaultTyping(ptv, ObjectMapper.DefaultTyping.NON_FINAL);
 
             mapper.writeValue(file, target);

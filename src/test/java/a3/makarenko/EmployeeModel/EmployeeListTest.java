@@ -52,35 +52,77 @@ public class EmployeeListTest {
     }
 
     @Test
-    public void addIllegalType(){
+    public void addInputMismatchType(){
+
+            EmployeeList employeeList = new EmployeeList();
+            employeeList.setScanner(new Scanner(new ByteArrayInputStream("Oops!\nAlexey\nFuture AQA\n1\n20\n1\n".getBytes())));
+            boolean actual = employeeList.add();
+
+        Assertions.assertEquals(false, actual);
+    }
+
+    @Test
+    public void addInputMismatchFamilyStatus(){
+
         EmployeeList employeeList = new EmployeeList();
+        employeeList.setScanner(new Scanner(new ByteArrayInputStream("1\nAlexey\nFuture AQA\nOops!\n20\n1\n".getBytes())));
+        boolean actual = employeeList.add();
 
-        employeeList.setScanner(new Scanner(new ByteArrayInputStream("Oops!\nAlexey\nFuture AQA\n1\n20\n1\n".getBytes())));
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {}, "");
-        employeeList.add();
+        Assertions.assertEquals(false, actual);
+    }
 
-        Engineer expected = new Engineer("Alexey", "Future AQA",
-                FamilyStatus.Single, 20,1);
+    @Test
+    public void addInputMismatchAge(){
 
-        Employee actual = employeeList.getEmployeeList().get(0);
+        EmployeeList employeeList = new EmployeeList();
+        employeeList.setScanner(new Scanner(new ByteArrayInputStream("1\nAlexey\nFuture AQA\n1\nOops!\n1\n".getBytes())));
+        boolean actual = employeeList.add();
 
-        Assertions.assertEquals(expected, actual,
-                "Constructed employee differs form created by add dialog");
+        Assertions.assertEquals(false, actual);
+    }
+
+    @Test
+    public void addInputMismatchExperience(){
+
+        EmployeeList employeeList = new EmployeeList();
+        employeeList.setScanner(new Scanner(new ByteArrayInputStream("1\nAlexey\nFuture AQA\n1\n20\nOops!\n".getBytes())));
+        boolean actual = employeeList.add();
+
+        Assertions.assertEquals(false, actual);
+    }
+
+    @Test
+    public void addAgeLessThan16(){
+
+        EmployeeList employeeList = new EmployeeList();
+        double rAge = RandomGenerator.getRandomNumber(-10, 16);
+        employeeList.setScanner(new Scanner(new ByteArrayInputStream(("1\nAlexey\nFuture AQA\n1\n" +
+                rAge + "\n1\n").getBytes())));
+        boolean actual = employeeList.add();
+
+        Assertions.assertEquals(false, actual);
+    }
+
+    @Test
+    public void addExperienceLessThanAge(){
+
+        EmployeeList employeeList = new EmployeeList();
+        int rAge = RandomGenerator.getRandomNumber(16, 100);
+        int rExperience = RandomGenerator.getRandomNumber(rAge, 100);
+        employeeList.setScanner(new Scanner(new ByteArrayInputStream(("1\nAlexey\nFuture AQA\n1\n" +
+                rAge + "\n" + rExperience + "\n").getBytes())));
+        boolean actual = employeeList.add();
+
+        Assertions.assertEquals(false, actual);
     }
 
     @Test
     public void remove() {
-        EmployeeList employeeList = new EmployeeList();
 
-        int rSize = RandomGenerator.getRandomNumber(2, 10);
-
-        for(int i = 0; i < rSize; i++){
-            employeeList.add(RandomGenerator.getRandomEmployee());
-        }
-
+        EmployeeList employeeList = RandomGenerator.getRandomEmployeeList(2,10);
         ArrayList<Employee> expected = new ArrayList<>(employeeList.getEmployeeList());
 
-        int rIndex = RandomGenerator.getRandomNumber(1,rSize);
+        int rIndex = RandomGenerator.getRandomNumber(1,employeeList.getEmployeeList().size());
         expected.remove(rIndex - 1);
 
 
@@ -91,6 +133,29 @@ public class EmployeeListTest {
         ArrayList<Employee> actual = employeeList.getEmployeeList();
         Assertions.assertEquals(expected, actual,
                 "List with directly remove differs from list with remove by dialog");
+    }
+
+    @Test
+    public void removeInputMismatch(){
+
+        EmployeeList employeeList = RandomGenerator.getRandomEmployeeList(2,10);
+        ArrayList<Employee> expected = new ArrayList<>(employeeList.getEmployeeList());
+        employeeList.setScanner(new Scanner(new ByteArrayInputStream("Oops!".getBytes())));
+        employeeList.remove();
+        ArrayList<Employee> actual = employeeList.getEmployeeList();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void removeIllegalIndex(){
+
+        EmployeeList employeeList = RandomGenerator.getRandomEmployeeList(2,10);
+        ArrayList<Employee> expected = new ArrayList<>(employeeList.getEmployeeList());
+        employeeList.setScanner(new Scanner(new ByteArrayInputStream(Integer.toString(
+                employeeList.getEmployeeList().size() + 1).getBytes())));
+        employeeList.remove();
+        ArrayList<Employee> actual = employeeList.getEmployeeList();
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test

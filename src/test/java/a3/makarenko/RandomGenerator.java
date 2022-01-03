@@ -2,6 +2,7 @@ package a3.makarenko;
 
 import a3.makarenko.EmployeeModel.Employee;
 import a3.makarenko.EmployeeModel.EmployeeFactory;
+import a3.makarenko.EmployeeModel.EmployeeList;
 import a3.makarenko.enums.EmployeeTypes;
 import a3.makarenko.enums.FamilyStatus;
 
@@ -45,5 +46,19 @@ public class RandomGenerator {
         EmployeeFactory employeeFactory = new EmployeeFactory();
         return employeeFactory.getEmployee(employeeType, rName, rPosition,
                 rFamilyStatus, rAge,rExperience);
+    }
+
+    public static EmployeeList getRandomEmployeeList(int listSize){
+        EmployeeList employeeList = new EmployeeList();
+
+        for(int i = 0; i < listSize; i++){
+            employeeList.add(RandomGenerator.getRandomEmployee());
+        }
+        return employeeList;
+    }
+
+    public static EmployeeList getRandomEmployeeList(int min, int max){
+        int rSize = RandomGenerator.getRandomNumber(min, max);
+        return getRandomEmployeeList(rSize);
     }
 }
