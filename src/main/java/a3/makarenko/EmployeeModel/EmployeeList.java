@@ -90,7 +90,7 @@ public class EmployeeList {
         System.out.print("Enter target number to delete ");
         int t = scanner.nextInt();
         try{
-            return employeeList.remove(t-1);
+            return employeeList.remove(--t);
         } catch (IndexOutOfBoundsException e){
             e.printStackTrace();
         }

@@ -31,16 +31,8 @@ public class RandomGenerator {
     }
 
     public static Employee getRandomEmployee(){
-        EmployeeTypes rType = EmployeeTypes.getType(RandomGenerator.getRandomNumber(0, EmployeeTypes.values().length - 1));
-        String rName = RandomGenerator.getRandomAlphabeticString(RandomGenerator.getRandomNumber(1, 255));
-        String rPosition = RandomGenerator.getRandomAlphabeticString(RandomGenerator.getRandomNumber(1, 255));
-        FamilyStatus rFamilyStatus = FamilyStatus.getType(RandomGenerator.getRandomNumber(0, FamilyStatus.values().length - 1));
-        int rAge = RandomGenerator.getRandomNumber(16, 100);
-        int rExperience = RandomGenerator.getRandomNumber(0, rAge - 1);
-
-        EmployeeFactory employeeFactory = new EmployeeFactory();
-        return employeeFactory.getEmployee(rType, rName, rPosition,
-                rFamilyStatus, rAge,rExperience);
+        return getRandomEmployee(EmployeeTypes.getType(
+                RandomGenerator.getRandomNumber(0, EmployeeTypes.values().length - 1)));
     }
 
     public static Employee getRandomEmployee(EmployeeTypes employeeType){

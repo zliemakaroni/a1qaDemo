@@ -2,13 +2,13 @@ package a3.makarenko.EmployeeModel;
 
 import a3.makarenko.RandomGenerator;
 import a3.makarenko.enums.EmployeeTypes;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static a3.makarenko.App.DELIMITER;
-import static org.junit.Assert.*;
 
 public class ManagerTest {
 
@@ -33,6 +33,7 @@ public class ManagerTest {
                 "\r\nExperience - " + manager.getExperience() +
                 "\r\n" + DELIMITER + "\r\n";
 
-        assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual,
+                "Showed by function Manager differs from showed directly");
     }
 }

@@ -3,8 +3,8 @@ package a3.makarenko.EmployeeModel;
 import a3.makarenko.RandomGenerator;
 import a3.makarenko.enums.EmployeeTypes;
 import a3.makarenko.enums.FamilyStatus;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class EmployeeFactoryTest {
 
@@ -21,7 +21,7 @@ public class EmployeeFactoryTest {
         EmployeeFactory employeeFactory = new EmployeeFactory();
         Employee actual = employeeFactory.getEmployee(EmployeeTypes.Engineer, rName, rPosition,
                 rFamilyStatus, rAge,rExperience);
-        Assert.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Constructed employee differs form created by factory");
     }
 
     @Test
@@ -32,7 +32,7 @@ public class EmployeeFactoryTest {
         EmployeeFactory employeeFactory = new EmployeeFactory();
         Employee actual = employeeFactory.getEmployee(EmployeeTypes.Engineer, "Alexey", "Future AQA",
                 FamilyStatus.Single, 20, 1);
-        Assert.assertNotEquals(expected, actual);
+        Assertions.assertNotEquals(expected, actual, "Employees with different type are equals");
     }
 
     @Test
@@ -43,7 +43,7 @@ public class EmployeeFactoryTest {
         EmployeeFactory employeeFactory = new EmployeeFactory();
         Employee actual = employeeFactory.getEmployee(EmployeeTypes.Manager, "Misha", "Future AQA",
                 FamilyStatus.Single, 20, 1);
-        Assert.assertNotEquals(expected, actual);
+        Assertions.assertNotEquals(expected, actual, "Employees with different name are equals");
     }
 
     @Test
@@ -54,7 +54,7 @@ public class EmployeeFactoryTest {
         EmployeeFactory employeeFactory = new EmployeeFactory();
         Employee actual = employeeFactory.getEmployee(EmployeeTypes.Manager, "Alexey", "PM",
                 FamilyStatus.Single, 20, 1);
-        Assert.assertNotEquals(expected, actual);
+        Assertions.assertNotEquals(expected, actual, "Employees with different position are equals");
     }
 
     @Test
@@ -65,7 +65,7 @@ public class EmployeeFactoryTest {
         EmployeeFactory employeeFactory = new EmployeeFactory();
         Employee actual = employeeFactory.getEmployee(EmployeeTypes.Manager, "Alexey", "Future AQA",
                 FamilyStatus.Married, 20, 1);
-        Assert.assertNotEquals(expected, actual);
+        Assertions.assertNotEquals(expected, actual, "Employees with different family status are equals");
     }
 
     @Test
@@ -76,7 +76,7 @@ public class EmployeeFactoryTest {
         EmployeeFactory employeeFactory = new EmployeeFactory();
         Employee actual = employeeFactory.getEmployee(EmployeeTypes.Manager, "Alexey", "Future AQA",
                 FamilyStatus.Single, 20.01, 1);
-        Assert.assertNotEquals(expected, actual);
+        Assertions.assertNotEquals(expected, actual, "Employees with different age are equals");
     }
 
     @Test
@@ -87,6 +87,6 @@ public class EmployeeFactoryTest {
         EmployeeFactory employeeFactory = new EmployeeFactory();
         Employee actual = employeeFactory.getEmployee(EmployeeTypes.Manager, "Alexey", "Future AQA",
                 FamilyStatus.Single, 20, 1.01);
-        Assert.assertNotEquals(expected, actual);
+        Assertions.assertNotEquals(expected, actual, "Employees with different experience are equals");
     }
 }
